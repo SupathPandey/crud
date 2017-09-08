@@ -7,10 +7,18 @@
 	    >	    
 	    <template slot="items" scope="props">
 	      <td>{{ props.item.id }}</td>
-	      <td class="text-xs-right">{{ props.item.resource }}</td>
-	      <td class="text-xs-right">{{ props.item.title }}</td>
+	      <td class="text-xs-right">{{ props.item.name }}</td>
+	      <td class="text-xs-right" >{{ props.item.title }}</td>
 	    </template>
 	  </v-data-table>
+	
+	  <v-container> 
+		<v-layout row wrap right class="mb-2">
+			<v-flex xs12 sm6 class="text-xs-center text-sm-left">
+				<v-btn large router to="/add_resource" dark class="info">Add Resource</v-btn>
+			</v-flex>
+		</v-layout>
+	</v-container>
 	</v-container>
 </template>
 

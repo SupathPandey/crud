@@ -10,10 +10,13 @@ Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
-  components: { App }
-})
+var parent = new Vue({
+							  el: '#app',
+							  router,
+							  store,
+							  template: '<App/>',
+							  components: { App }
+							})
+
+
+
