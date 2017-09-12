@@ -42,6 +42,7 @@
       return {
         valid: false,
         submit_dialog: false,
+        header: { },
         data: { },
         nameRules: [
           (v) => {  
@@ -56,19 +57,22 @@
           'Item 2',
           'Item 3',
           'Item 4'
-        ],
-        checkbox: false
+        ]
       }
     },
     methods: {
       submit () {
+        this.submit_dialog = true;
       	console.log(this.$store);
-      	this.$store.dispatch('resource/add', this.data).then(() => {
+        console.log(this.data);
+      	this.$store.dispatch('resource/add_item', this.data).then(() => {
       		this.data = {};
-      		this.submit_dialog = true;
+      		
       		// show item added succesfully
       		// or redirect to list
       	});
+
+
       	// var resource_size = this.$store.state.resource.items.length;
        //  if(this.$refs.form.validate()===true)
        //  {
@@ -89,6 +93,15 @@
       }
     },
     computed: {
+    	// header: function {
+
+    	// 	this.$store.dispatch('resource/add_header', this.header).then(() => {
+     //  		this.header = {};
+     //  		// this.submit_dialog = true;
+     //  		// show item added succesfully
+     //  		// or redirect to list
+     //  	});
+    	// }
 
     },
     components: {

@@ -1,8 +1,10 @@
 export const resource_module = {
 	namespaced: true,
 	state: {
-		currentItem: {},
-		headers: 	[
+    all_dialog: false,
+		selected: {},
+		headers: 
+		[
 			{
 				text: 'id', 
 				align: 'left',
@@ -11,10 +13,12 @@ export const resource_module = {
 			}, 
 			{
 				text: 'Resource', 
+				sortable: false,
 				value: 'resource'
 			}, 
 			{
 				text: 'Title', 
+				sortable: false,
 				value: 'title'
 			}
 		], 
@@ -23,48 +27,73 @@ export const resource_module = {
 			 {
           id: 1,
           name: "test",
-          title: "efdsfsd"
+          title: "efdsfsd",
+          active: true
         },
         {
           id: 2,
           name: "test",
-          title: "efdsfsd"
+          title: "efdsfsd",
+          active: true
         },
         {
           id: 3,
           name: "test",
-          title: "efdsfsd"
+          title: "efdsfsd",
+          active: true
         },
         {
           id: 4,
           name: "test",
-          title: "efdsfsd"
+          title: "efdsfsd",
+          active: true
         },
         {
-          id: 10,
+          id: 5,
           name: "test",
-          title: "efdsfsd"
+          title: "efdsfsd",
+          active: true
         }
 
 		]
 	},
 	getters: {
     headers: state => {
-      return state.headers;
+
+    	//var arr = Object.key(state.items[0]);
+    	
+     // var obj = state.items[0];
+     //  return Object.keys(obj);
+     return state.headers;
     },
     items: state => {
       return state.items;
+    },
+    selected: state => {
+    	return state.selected;
     }
-  }, 
+  },
   mutations: {
-  	ADD: (state, { item }) => {
+  	ADD_ITEM: (state, {item}) => {  		
   		state.items.unshift(item);
-  	}
+  	},
+  	DELETE_ITEM: (state, id) => {  
+      state.selected = id.item;
+      for(var i=0; i<state.items.length; i++)
+      {
+        if(id.item===state.items[i].id){
+          state.items.splice(i,1);
+        }
+      }
 
+    }
   },
   actions: {
-  	add: ({ commit, state }, item) => {
-      return commit('ADD', { item });
+  	add_item: ({ commit, state }, item) => {
+      return commit('ADD_ITEM', { item });
+    },
+    delete_item: ({ commit, state }, item) => {
+      return commit('DELETE_ITEM', { item });
     }
   }
 }

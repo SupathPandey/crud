@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Resource from '@/components/Resources/Resource.vue'
+import Resource from '@/components/Resources/resource.vue'
 import Tab_1 from '@/components/Resources/Tab_1.vue'
 import Tab_2 from '@/components/Resources/Tab_2.vue'
 import Tab_3 from '@/components/Resources/Tab_3.vue'
