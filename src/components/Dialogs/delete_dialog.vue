@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent v-model="deletedialog"> 
+  <v-dialog persistent v-model="this.$store.state.resource.all_dialog.delete_dialog"> 
   <!-- ///////////////////////////// -->
     <v-card>
       <v-card-title class="headline">Do you wish to delete the resource {{ resource_num }}?</v-card-title><!-- 
@@ -19,7 +19,7 @@
   export default {
     data () {
       return {
-        del: this.deletedialog
+        
       }
     },
     props: ['deletedialog'],
@@ -28,11 +28,13 @@
         console.log(this.$store.state.resource.selected);
         var id = this.$store.state.resource.selected;
         this.$store.dispatch('resource/delete_item', id);
-        this.$parent.delete_dialog = false;
+        this.$store.state.resource.all_dialog.delete_dialog = false;
+        // this.$parent.delete_dialog = false;
         // this.$router.s();
       },
       delete_resource_no() {
-         this.$parent.delete_dialog = false;
+        this.$store.state.resource.all_dialog.delete_dialog = false;
+        // this.$parent.delete_dialog = false;
         // this.$router.s();
       }
     },

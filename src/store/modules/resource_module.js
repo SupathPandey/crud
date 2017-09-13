@@ -1,7 +1,10 @@
 export const resource_module = {
 	namespaced: true,
 	state: {
-    all_dialog: false,
+    all_dialog: {
+      edit_dialog: false ,
+      delete_dialog: false
+      },
 		selected: {},
 		headers: 
 		[

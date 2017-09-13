@@ -31,13 +31,13 @@
 				</v-flex>
 			</v-layout>
 		</v-container>
-		<delete-alert :deletedialog="delete_dialog"></delete-alert>
-		<edit-resource :editdialog="edit_resource_dialog"></edit-resource>
+		<delete-dialog :deletedialog="this.$store.state.resource.all_dialog.delete_dialog"></delete-dialog>
+		<edit-resource :editdialog="this.$store.state.resource.all_dialog.edit_dialog"></edit-resource>
 	</v-container>
 </template>
 
 <script>
-	import delete_alert from '../Dialogs/delete_alert.vue'
+	import delete_dialog from '../Dialogs/delete_dialog.vue'
 	import edit_resource_dialog from '../Dialogs/edit_resource_dialog.vue'
 
 	import { mapGetters } from 'vuex';
@@ -47,18 +47,20 @@
   	data() {
   		return {
   			selected: {},
-  			delete_dialog: false,
-  			edit_resource_dialog: false
+  			// delete_dialog: false,
+  			dialog: false
   		}
   	},
   	methods: {
   		delete_resource(id) {
-  			this.delete_dialog = true;
+  			console.log(this.dialog);
+  			this.$store.state.resource.all_dialog.delete_dialog = true;
   			this.$store.state.resource.selected = id; //setting state selected to id of selected item 
   			
   		},
   		edit_resource(id) {
-  			this.edit_resource_dialog = true;
+  			
+  			this.$store.state.resource.all_dialog.edit_dialog = true;
   			this.$store.state.resource.selected = id;
 
   			// alert("delete");
@@ -71,7 +73,7 @@
 	    ])
     },
     components: {
-	    'delete-alert': delete_alert, 
+	    'delete-dialog': delete_dialog, 
 	    'edit-resource': edit_resource_dialog
 	  },
     mounted: function () {
