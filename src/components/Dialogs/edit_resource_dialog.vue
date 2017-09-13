@@ -33,7 +33,7 @@
                     name="input-1"
                     label="Label Text"
                     id="testing"
-                  ></v-text-field>
+                  >test</v-text-field>
                 </v-flex>
               </v-layout>
               <v-layout row>
