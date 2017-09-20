@@ -7,18 +7,35 @@
           <h5>Delete Resource</h5>
         </v-flex>
       </v-layout>
-      <v-card-text >
-        <v-card-title class="subheader">{{ resource_name }}?
-        </v-card-title>
-      </v-card-text><!-- 
-          <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text> -->
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn class="green--text darken-1" flat="flat" @click="delete_resource_no">No</v-btn>
-          <v-btn class="green--text darken-1" flat="flat" @click="delete_resource_yes">Yes</v-btn>
-        </v-card-actions>
-      </v-card>
-    
+      <v-card-text class="ma-0 pa-2">
+        <v-flex class="mt-3 text-xs-center">
+          <span>Do you wish to delete resource </span>          
+        </v-flex>
+        <v-flex class="mt-3 text-xs-center">
+          <h6>{{ resource_name }} ?</h6>
+        </v-flex>
+        <!-- <v-flex class="mt-2 text-xs-center">
+           <h6>{{ resource_name }}?</h6>
+        </v-flex> -->
+       
+
+
+
+
+
+
+
+
+
+     
+          <v-layout row>        
+            <v-flex class="text-xs-center">
+              <v-btn class="green--text darken-1" flat="flat" @click="delete_resource_no">No</v-btn>
+              <v-btn class="green--text darken-1" flat="flat" @click="delete_resource_yes">Yes</v-btn>      
+            </v-flex>
+          </v-layout>
+        </v-card-text>
+      </v-card>    
     </v-dialog>
   </v-container>
 </template>
@@ -51,10 +68,11 @@
       resource_name: function() {
         return this.$store.state.resource.selected.name;
       }
-
-
     }
 
     
   }
 </script>
+<style scoped>
+  
+</style>
