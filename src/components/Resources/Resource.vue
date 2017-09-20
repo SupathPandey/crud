@@ -53,6 +53,7 @@
   			// delete_dialog: false,
   			dialog: false
   		}
+  		
   	},
   	methods: {
   		delete_resource(item) {
