@@ -4,6 +4,8 @@ var config = require('../config')
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
+var mongodb = require('mongodb')
+var MongoClient = require("mongodb").MongoClient;
 
 var opn = require('opn')
 var path = require('path')
@@ -79,6 +81,9 @@ devMiddleware.waitUntilValid(() => {
   }
   _resolve()
 })
+
+//connecting to database
+// var connectDatabase = 
 
 var server = app.listen(port)
 

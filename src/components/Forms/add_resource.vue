@@ -13,7 +13,7 @@
 	      required
 	    ></v-text-field>
 	    <v-select
-	      label="Item"
+	      label="Subjects"
 	      v-model="data.subject"
 	      :items="items"
 	      required
@@ -52,12 +52,7 @@
           (v) => v && v.length <= 10 || 'Name must be less than 10 characters'
         ],
         select: null,
-        items: [
-          'Item 1',
-          'Item 2',
-          'Item 3',
-          'Item 4'
-        ]
+        items: this.$store.state.resource.subjects,
       }
     },
     methods: {

@@ -9,12 +9,15 @@
 	      <td>{{ props.item.id }}</td>
 	      <td class="text-xs-right">{{ props.item.name }}</td>
 	      <td class="text-xs-right" >{{ props.item.title }}</td>
+	      <td class="text-xs-right" >
+	      	<v-chip class="accent white--text">{{ props.item.subject }}</v-chip>
+	      </td>
 	      <td>
 		      <v-flex xs12 sm12 right >
-	            <v-btn icon @click="delete_resource(props.item.id)" class="primary--text" >
+	            <v-btn icon @click="delete_resource(props.item)" class="primary--text" >
 	              <v-icon>delete</v-icon>
 	            </v-btn>	       
-	            <v-btn icon @click="edit_resource(props.item.id)" class="green--text">
+	            <v-btn icon @click="edit_resource(props.item)" class="green--text">
 	              <v-icon>mode_edit</v-icon>
 	            </v-btn>
 	        </v-flex>	      	
@@ -32,7 +35,7 @@
 			</v-layout>
 		</v-container>
 		<delete-dialog :deletedialog="this.$store.state.resource.all_dialog.delete_dialog"></delete-dialog>
-		<edit-resource :editdialog="this.$store.state.resource.all_dialog.edit_dialog"></edit-resource>
+		<edit-resource :editdialogform="this.$store.state.resource.all_dialog.edit_dialog"></edit-resource>
 	</v-container>
 </template>
 
@@ -52,16 +55,17 @@
   		}
   	},
   	methods: {
-  		delete_resource(id) {
+  		delete_resource(item) {
   			console.log(this.dialog);
   			this.$store.state.resource.all_dialog.delete_dialog = true;
-  			this.$store.state.resource.selected = id; //setting state selected to id of selected item 
+  			this.$store.state.resource.selected = item; //setting state selected to id of selected item 
   			
   		},
-  		edit_resource(id) {
+  		edit_resource(item) {
   			
   			this.$store.state.resource.all_dialog.edit_dialog = true;
-  			this.$store.state.resource.selected = id;
+  			this.$store.state.resource.selected = item;
+  			
 
   			// alert("delete");
   		}

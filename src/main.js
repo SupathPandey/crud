@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App'
+import * as firebase from 'firebase'
 import router from './router'
 import {store} from './store/store'
 
@@ -15,7 +16,16 @@ var parent = new Vue({
 							  router,
 							  store,
 							  template: '<App/>',
-							  components: { App }
+							  components: { App },
+							  created () {
+							  	firebase.initializeApp({
+							  		apiKey: 'AIzaSyD2ITNysIKpDLuc-MSw8UMAjCPNS_vnJEg',
+								    authDomain: 'resourceapp-130917.firebaseapp.com',
+								    databaseURL: 'https://resourceapp-130917.firebaseio.com',
+								    projectId: 'resourceapp-130917',
+								    storageBucket: 'resourceapp-130917.appspot.com'
+							  	})
+							  }
 							})
 
 

@@ -1,98 +1,95 @@
 <template>
-	<v-container>
-	  <v-data-table
-	  		v-model="selected"
-	      :headers="headers"
-	      :items="items"
-	      select-all
-	      :pagination.sync="pagination"
-	      selected-key="name"
-	      class="elevation-2"
-	    >	    
-	    <template slot="headers" scope="props">
-	    	<tr>
-		    		<th>
-		    			<v-checkbox
-		    				primary
-		    				hide-details
-		    				@click.native="toggle_all"
-		    				:input-value="props.all"
-		    				:indeterminate="props.indeterminate"
-		    			></v-checkbox>
-		    		</th>
-		    		<th 
-			    			v-for="header in props.headers" 
-			    			:key="header.text"
-			    			:class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
-		          	@click="changeSort(header.value)"
-		        	><v-icon>arrow_upward</v-icon>
-		          {{ header.text }}
-	        	</th>
-	    	</tr>	    	
-	    </template>
-	    <template slot="items" scope="props">
-	    	<tr :active="props.selected" @click="props.selected = !props.selected">
-	    		<td>
-	    			<list-checkbox></list-checkbox>
-	          <v-checkbox
-	            primary
-	            hide-details
-	            :input-value="props.selected"
-	          ></v-checkbox>
-        	</td>
-	    		<td>{{ props.item.id }}</td>
-		      <td class="text-xs-right">{{ props.item.name }}</td>
-		      <td class="text-xs-right" >{{ props.item.title }}</td>
-	    	</tr>
-	    </template>
-	  </v-data-table>
-	
-	  <v-container> 
-			<v-layout row wrap left class="mb-2">
-				<v-flex xs12 sm4 class="text-xs-center text-sm-left">
-					<v-btn large router to="/add_resource" dark class="info">ADD</v-btn>
-				</v-flex>
-				<v-flex xs12 sm4 class="text-xs-center text-sm-left">
-					<v-btn large router dark class="info" @click="edit_resource">EDIT</v-btn>
-				</v-flex>				
-				<v-flex xs12 sm4 class="text-xs-center text-sm-left">
-					<v-btn large router to="/add_resource" dark class="primary">DELETE</v-btn>
-				</v-flex>
-			</v-layout>
-		</v-container>
-	</v-container>
+  <div class="edit_resource_dialog">
+    <v-container>
+      <v-dialog  persistent v-model="this.$store.state.resource.all_dialog.edit_dialog">
+        <v-card>
+          <v-layout row class="purple darken-1 white--text">
+            <v-flex xs12 class="mt-3 text-xs-center">
+              <h5>
+                <span class="headline">Resource</span>
+                <hr class="mr-3 mt-1 ml-3">
+              </h5>
+            </v-flex>         
+          </v-layout>          
+          <v-card-text class="ma-0 pa-2">
+              <v-container fluid class="ma-0 pa-0">
+                <v-layout row>
+                    <v-flex xs4 class="mt-3 mr-0 pl-2">
+                      <v-subheader>Resource</v-subheader>
+                    </v-flex>
+                  <v-flex xs12>
+                    <v-text-field
+                      name="input-1"
+                      label="Label Text"
+                      id="testing"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                    <v-flex xs4 class="mt-3 mr-0 pl-">
+                      <v-subheader>Title</v-subheader>
+                    </v-flex>
+                  <v-flex xs12>
+                    <v-text-field
+                      name="input-1"
+                      label="Label Text"
+                      id="testing"
+                    >test</v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                    <v-flex xs4 class="mt-3 mr-1 text-xs-center">
+                      <v-select>Name2</v-select>
+                    </v-flex>
+                  <v-flex xs12>
+                    <v-text-field
+                      name="input-1"
+                      label="Label Text"
+                      id="testing"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex xs12 sm12 md12 class="mt-4 text-xs-center">
+                    <v-btn flat class="red--text darken-1" @click="edit_resource_cancel">Cancel</v-btn>
+                    <v-btn flat class="green--text darken-1" @click="edit_resource_save">Save</v-btn>
+                  </v-flex>
+                </v-layout>
+                </v-layout>
+              </v-container>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </v-container>
+  </div>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
-
-
   export default {
-  	data() {
-  		return {
-  			pagination: {
-          sortBy: 'name'
-        },
-  		}
-  	},
-  	methods: {
-  		edit_resource: function() {
-
-  		}
-
-  	},
-    computed: {
-    	...mapGetters('resource', [
-	      'headers',
-	      'selected',
-	      'items'
-	    ])	
+    data() {
+      return {
+        message: "msg"
+      }
     },
-    mounted: function () {
-		  // this.$store.resource.dispach("increment").then(() => {
+    props: ['editdialog'],
+    methods: {
+      edit_resource_save: function(){
 
-		  // });
-		}
+      },
+      edit_resource_cancel: function(){
+        this.$store.state.resource.all_dialog.edit_dialog = false;
+
+      }
+    }
+  }
+</script> 
+
+<style scoped>
+
+  hr {
+    border-width: 0.5px;
   }
 
-</script>
+
+  
+</style>

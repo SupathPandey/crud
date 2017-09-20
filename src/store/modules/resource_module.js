@@ -6,6 +6,13 @@ export const resource_module = {
       delete_dialog: false
       },
 		selected: {},
+    subjects: [
+      "Literature",
+      "Maths",
+      "Biology",
+      "Physics",
+      "Chemistry"
+    ],
 		headers: 
 		[
 			{
@@ -23,7 +30,12 @@ export const resource_module = {
 				text: 'Title', 
 				sortable: false,
 				value: 'title'
-			}
+			},
+      {
+        text: 'Subject', 
+        sortable: false,
+        value: 'subject'
+      }
 		], 
 		items: 
 		[
@@ -31,30 +43,35 @@ export const resource_module = {
           id: 1,
           name: "test",
           title: "efdsfsd",
+          subject: "",
           active: true
         },
         {
           id: 2,
           name: "test",
           title: "efdsfsd",
+          subject: "",
           active: true
         },
         {
           id: 3,
           name: "test",
           title: "efdsfsd",
+          subject: "",
           active: true
         },
         {
           id: 4,
           name: "test",
           title: "efdsfsd",
+          subject: "",
           active: true
         },
         {
           id: 5,
           name: "test",
           title: "efdsfsd",
+          subject: "",
           active: true
         }
 
@@ -77,26 +94,44 @@ export const resource_module = {
     }
   },
   mutations: {
-  	ADD_ITEM: (state, {item}) => {  		
+  	ADD_ITEM: (state, {item}) => {  
+      console.log(item.name+ " ADD_ITEM");		
   		state.items.unshift(item);
   	},
-  	DELETE_ITEM: (state, id) => {  
-      state.selected = id.item;
+  	DELETE_ITEM: (state, {item}) => {  
+      console.log(item.id+" DELETE");
+      //state.selected = id.item;
       for(var i=0; i<state.items.length; i++)
       {
-        if(id.item===state.items[i].id){
+        if(item.id===state.items[i].id){
           state.items.splice(i,1);
         }
       }
-
+    },
+    EDIT_ITEM: (state, {modifieditem}) => {
+      // state.selected = id.item;
+      console.log(modifieditem.title+" ID");
+      for(var i=0; i<state.items.length; i++)
+      {
+        if(modifieditem.id===state.items[i].id){
+          state.items.splice(i,1,modifieditem);
+          console.log(modifieditem.title+" modifieditem");
+        }
+      }
     }
   },
   actions: {
   	add_item: ({ commit, state }, item) => {
+      console.log(item+ " add_item");
       return commit('ADD_ITEM', { item });
     },
     delete_item: ({ commit, state }, item) => {
+      console.log(item+" delete_item");
       return commit('DELETE_ITEM', { item });
-    }
+    },
+    edit_item: ({ commit, state }, modifieditem) => {
+      console.log(modifieditem.title+" edit_item");
+      return commit('EDIT_ITEM', { modifieditem });
+    } 
   }
 }
